@@ -8,8 +8,8 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * App\User
- *
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[]
+ *     $notifications
  * @mixin \Eloquent
  * @property int $id
  * @property string $name
@@ -40,4 +40,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

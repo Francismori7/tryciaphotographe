@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Product;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -44,5 +45,16 @@ class UserTest extends TestCase
 
         $this->assertTrue($user->isActive());
     }
+
+    /** @test */
+    public function a_user_has_many_products()
+    {
+        $user = create(User::class);
+        create(Product::class, ['user_id' => $user->id], 2);
+
+        $this->assertCount(2, $user->products);
+        $this->assertInstanceOf(Product::class, $user->products()->first());
+    }
+
 
 }
