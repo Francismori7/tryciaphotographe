@@ -15,6 +15,8 @@ class ActivationTest extends TestCase
     /** @test */
     public function it_activates_a_user_with_the_right_activation_code()
     {
+        Mail::fake();
+        
         $user = create(User::class, ['activation_code' => 'code']);
 
         $response = $this->get(route('activate', ['code']));
