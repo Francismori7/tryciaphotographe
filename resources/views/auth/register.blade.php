@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Register')
+@section('title', __('Register'))
 
 @section('content')
     <div class="container">
@@ -11,8 +11,8 @@
                 <div class="card">
                     <div class="card-header">{{ __('I already have an account!') }}</div>
                     <div class="card-block">
-                        <a href="{{ url('/login') }}" class="btn btn-info btn-block">
-                            {{ __('Login') }}
+                        <a href="{{ url('/login') }}" class="btn btn-success btn-block">
+                            {{ __('Login to your account') }}
                         </a>
                     </div>
                 </div>
@@ -21,16 +21,17 @@
                 <div class="card">
                     <div class="card-header">{{ __('Create an account') }}</div>
                     <div class="card-block">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                        <form class="form-horizontal" method="POST" action="{{ url('/register') }}">
                             {!! csrf_field() !!}
 
                             <div class="row form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                <label class="col-xs-12 col-md-3 col-form-label">{{ __('Name') }}</label>
+                                <label class="col-xs-12 col-md-3 col-form-label" for="name">{{ __('Name') }}</label>
 
                                 <div class="col-xs-12 col-sm-9">
                                     <input type="text"
                                            class="form-control{{ $errors->has('name') ? ' form-control-danger' : '' }}"
                                            name="name" value="{{ old('name') }}"
+                                           id="name"
                                            placeholder="{{ __('Your name') }}">
 
                                     @if ($errors->has('name'))
@@ -42,13 +43,14 @@
                             </div>
 
                             <div class="row form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                <label class="col-xs-12 col-md-3 col-form-label">E-Mail</label>
+                                <label class="col-xs-12 col-md-3 col-form-label" for="email">{{ __('Email address') }}</label>
 
                                 <div class="col-xs-12 col-sm-9">
                                     <input type="email"
                                            class="form-control{{ $errors->has('email') ? ' form-control-danger' : '' }}"
                                            name="email"
-                                           value="{{ old('email') }}" placeholder="E-Mail">
+                                           id="email"
+                                           value="{{ old('email') }}" placeholder="{{ __('Your email address') }}">
 
                                     @if ($errors->has('email'))
                                         <small class="form-control-feedback">
@@ -59,12 +61,13 @@
                             </div>
 
                             <div class="row form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                <label class="col-xs-12 col-md-3 col-form-label">{{ __('Password') }}</label>
+                                <label class="col-xs-12 col-md-3 col-form-label" for="password">{{ __('Password') }}</label>
 
                                 <div class="col-xs-12 col-sm-9">
                                     <input type="password"
                                            class="form-control{{ $errors->has('password') ? ' form-control-danger' : '' }}"
                                            name="password"
+                                           id="password"
                                            placeholder="{{ __('Password') }}">
 
                                     @if ($errors->has('password'))
@@ -76,12 +79,13 @@
                             </div>
 
                             <div class="row form-group{{ $errors->has('password_confirmation') ? ' has-danger' : '' }}">
-                                <label class="col-xs-12 col-md-3 col-form-label"></label>
+                                <label class="col-xs-12 col-md-3 col-form-label" for="password_confirmation"></label>
 
                                 <div class="col-xs-12 col-sm-9">
                                     <input type="password"
                                            class="form-control{{ $errors->has('password_confirmation') ? ' form-control-danger' : '' }}"
                                            name="password_confirmation"
+                                           id="password_confirmation"
                                            placeholder="{{ __('Password (confirmation)') }}">
 
                                     @if ($errors->has('password_confirmation'))
