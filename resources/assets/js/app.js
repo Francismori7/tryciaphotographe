@@ -6,7 +6,8 @@
 
 require('./bootstrap');
 
-import Vue from 'vue';
+import Vue from "vue";
+import Logout from "./components/Logout.vue";
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14,8 +15,12 @@ import Vue from 'vue';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app'
-});
+Vue.component('logout', Logout);
 
-$('#flash-overlay-modal').modal();
+const app = new Vue({
+    el: '#app',
+
+    created() {
+        $('#flash-overlay-modal').modal();
+    }
+});

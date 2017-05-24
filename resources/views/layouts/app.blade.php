@@ -51,13 +51,7 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <form action="{{ url('/logout') }}" method="post">
-                                    {{ csrf_field() }}
-
-                                    <button type="submit" class="btn btn-danger">
-                                        {{ __("Logout") }}
-                                    </button>
-                                </form>
+                                <logout class="nav-link"></logout>
                             </li>
                         @endif
                     </ul>
