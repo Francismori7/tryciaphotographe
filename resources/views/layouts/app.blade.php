@@ -51,6 +51,9 @@
                             </li>
                         @else
                             <li class="nav-item">
+                                <a href="{{ route('dashboard.index') }}" class="nav-link">{{ auth()->user()->name }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <logout class="nav-link"></logout>
                             </li>
                         @endif
