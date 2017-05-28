@@ -1,12 +1,9 @@
 /*!******************************************************************************
  * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.
  ******************************************************************************/
-
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
-
-$font-family-sans-serif: "Lato", sans-serif;
-
+@import "bootswatch-4/cosmo/variables";
 @import "~bootstrap/scss/bootstrap";
+@import "bootswatch-4/cosmo/bootswatch";
 @import "~font-awesome/scss/font-awesome";
 
 *[v-cloak] {
@@ -17,14 +14,16 @@ $font-family-sans-serif: "Lato", sans-serif;
   margin-bottom: 2em;
 }
 
-h1.page-header {
-  @extend .h1;
-  border-bottom: solid $gray-light 1px;
-  padding-bottom: 0.2em;
-  margin-bottom: 1em;
-
-  small {
-    font-size: 50%;
-    color: $gray-light;
+.btn {
+  &.btn-facebook {
+    @include button-variant(white, #3b5998, #8b9dc3);
+  }
+  &.btn-google {
+    @extend .btn-danger;
+    background-color: #ee4339;
+  }
+  &.btn-twitter {
+    @extend .btn-info;
+    background-color: #2bb8ee;
   }
 }
