@@ -9,6 +9,20 @@
         <div class="row">
             <div class="col-xs-12 col-md-4 push-md-8">
                 <div class="card">
+                <div class="card-header">{{ __('Proceed with social authentification') }}</div>
+                    <div class="card-block">
+                        <a href="#" class="btn btn-facebook btn-block">
+                            <i class="fa fa-facebook-f" aria-hidden="true"></i> {{ __('Login with Facebook') }}
+                        </a>
+                        <a href="#" class="btn btn-google btn-block">
+                            <i class="fa fa-google" aria-hidden="true"></i> {{ __('Login with Google') }}
+                        </a>
+                        <a href="#" class="btn btn-twitter btn-block">
+                            <i class="fa fa-twitter" aria-hidden="true"></i> {{ __('Login with Twitter') }}
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
                     <div class="card-header">{{ __('I already have an account!') }}</div>
                     <div class="card-block">
                         <a href="{{ url('/login') }}" class="btn btn-success btn-block">
@@ -27,7 +41,7 @@
                             <div class="row form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                 <label class="col-xs-12 col-md-3 col-form-label" for="name">{{ __('Name') }}</label>
 
-                                <div class="col-xs-12 col-sm-9">
+                                <div class="col-xs-12 col-md-9">
                                     <input type="text"
                                            class="form-control{{ $errors->has('name') ? ' form-control-danger' : '' }}"
                                            name="name" value="{{ old('name') }}"
@@ -45,7 +59,7 @@
                             <div class="row form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                 <label class="col-xs-12 col-md-3 col-form-label" for="email">{{ __('Email address') }}</label>
 
-                                <div class="col-xs-12 col-sm-9">
+                                <div class="col-xs-12 col-md-9">
                                     <input type="email"
                                            class="form-control{{ $errors->has('email') ? ' form-control-danger' : '' }}"
                                            name="email"
@@ -63,7 +77,7 @@
                             <div class="row form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                 <label class="col-xs-12 col-md-3 col-form-label" for="password">{{ __('Password') }}</label>
 
-                                <div class="col-xs-12 col-sm-9">
+                                <div class="col-xs-12 col-md-9">
                                     <input type="password"
                                            class="form-control{{ $errors->has('password') ? ' form-control-danger' : '' }}"
                                            name="password"
@@ -81,7 +95,7 @@
                             <div class="row form-group{{ $errors->has('password_confirmation') ? ' has-danger' : '' }}">
                                 <label class="col-xs-12 col-md-3 col-form-label" for="password_confirmation"></label>
 
-                                <div class="col-xs-12 col-sm-9">
+                                <div class="col-xs-12 col-md-9">
                                     <input type="password"
                                            class="form-control{{ $errors->has('password_confirmation') ? ' form-control-danger' : '' }}"
                                            name="password_confirmation"
@@ -97,7 +111,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-xs-12 col-sm-9 offset-sm-3">
+                                <div class="col-xs-12 col-md-9 offset-md-3">
                                     <button type="submit" class="btn btn-primary">
                                         <span class="fa fa-user"></span> {{ __('Create my account') }}
                                     </button>
