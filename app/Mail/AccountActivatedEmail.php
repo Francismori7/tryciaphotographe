@@ -1,4 +1,7 @@
 <?php
+/******************************************************************************
+ * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
+ ******************************************************************************/
 
 namespace App\Mail;
 
@@ -20,7 +23,7 @@ class AccountActivatedEmail extends Mailable implements ShouldQueue
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param \App\User $user
      */
     public function __construct(User $user)
     {
@@ -34,6 +37,7 @@ class AccountActivatedEmail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('emails.account-activated');
+        return $this->markdown('emails.account-activated')
+            ->subject(__('Account Activated Successfully!'));
     }
 }

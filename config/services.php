@@ -1,4 +1,7 @@
 <?php
+/******************************************************************************
+ * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
+ ******************************************************************************/
 
 return [
 
@@ -33,6 +36,12 @@ return [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect' => rtrim(env('APP_URL'), '/').'/auth/google/callback',
     ],
 
 ];

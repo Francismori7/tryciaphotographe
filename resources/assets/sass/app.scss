@@ -1,5 +1,5 @@
-/*!******************************************************************************
- * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.
+/*!*****************************************************************************
+ * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
  ******************************************************************************/
 @import "bootswatch-4/cosmo/variables";
 @import "~bootstrap/scss/bootstrap";
@@ -19,11 +19,9 @@
     @include button-variant(white, #3b5998, #8b9dc3);
   }
   &.btn-google {
-    @extend .btn-danger;
-    background-color: #ee4339;
+    @include button-variant(white, #4285F4, lighten(#4285F4, 10%));
   }
   &.btn-twitter {
-    @extend .btn-info;
-    background-color: #2bb8ee;
+    @include button-variant(white, #2bb8ee, lighten(#2bb8ee, 10%));
   }
 }

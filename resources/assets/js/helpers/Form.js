@@ -1,3 +1,7 @@
+/******************************************************************************
+ * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
+ ******************************************************************************/
+
 import Errors from "./Errors";
 
 export default class Form {

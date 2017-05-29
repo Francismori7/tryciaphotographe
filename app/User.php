@@ -1,10 +1,14 @@
 <?php
+/******************************************************************************
+ * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
+ ******************************************************************************/
 
 namespace App;
 
 use App\Traits\MustActivateAccount;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Socialite\Facades\Socialite;
 
 /**
  * App\User
@@ -44,5 +48,14 @@ class User extends Authenticatable
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function oauth()
+    {
+        if (!$this->oauth_id) {
+            return null;
+        }
+
+        return Socialite::driver($this->oauth_type)->stateless()->userFromToken($this->oauth_access_token);
     }
 }

@@ -1,4 +1,7 @@
 <?php
+/******************************************************************************
+ * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
+ ******************************************************************************/
 
 namespace App\Mail;
 
@@ -34,6 +37,7 @@ class AccountActivationEmail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('emails.account-activation', ['user' => $this->user]);
+        return $this->markdown('emails.account-activation')
+            ->subject(__('Account Activation Required'));
     }
 }
