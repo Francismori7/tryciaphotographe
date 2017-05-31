@@ -5,8 +5,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class DashboardController extends Controller
 {
     /**
@@ -19,11 +17,12 @@ class DashboardController extends Controller
 
     /**
      * Show the application dashboard.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        dd(auth()->user()->connectedAccounts->first()->getInstance()->refreshAccount());
+
         return view('dashboard.index');
     }
 }

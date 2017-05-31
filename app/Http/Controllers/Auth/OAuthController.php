@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Auth;
 
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\AbstractProvider;
 use Laravel\Socialite\Two\User as GenericUser;
@@ -20,6 +21,8 @@ abstract class OAuthController extends Controller
     abstract public function retrieveUser(GenericUser $user);
 
     abstract public function createUser(GenericUser $user);
+
+    abstract public function refreshUser(User $user, GenericUser $genericUser);
 
     protected function socialiteInstance(): AbstractProvider
     {

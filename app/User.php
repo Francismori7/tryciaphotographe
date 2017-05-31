@@ -8,7 +8,6 @@ namespace App;
 use App\Traits\MustActivateAccount;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Socialite\Facades\Socialite;
 
 /**
  * App\User
@@ -45,13 +44,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function connectedAccounts()
     {
-    public function oauth()
-    {
-        if (!$this->oauth_id) {
-            return null;
-        }
-
-        return Socialite::driver($this->oauth_type)->stateless()->userFromToken($this->oauth_access_token);
+        return $this->hasMany(ConnectedAccount::class);
     }
 }

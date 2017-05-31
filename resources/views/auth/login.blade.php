@@ -8,14 +8,6 @@
 
         <div class="row">
             <div class="col-xs-12 col-md-4 push-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('I do not have an account!') }}</div>
-                    <div class="card-block">
-                        <a href="{{ url('/register') }}" class="btn btn-success btn-block">
-                            {{ __('Create a new account') }}
-                        </a>
-                    </div>
-                </div>
                 <div class="card mb-4">
                     <div class="card-header">{{ __('Proceed with social authentification') }}</div>
                     <div class="card-block">
@@ -27,6 +19,14 @@
                         </a>
                         <a href="#" class="btn btn-twitter btn-block">
                             <i class="fa fa-twitter" aria-hidden="true"></i> {{ __('Sign in with Twitter') }}
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">{{ __('I do not have an account!') }}</div>
+                    <div class="card-block">
+                        <a href="{{ url('/register') }}" class="btn btn-success btn-block">
+                            {{ __('Create a new account') }}
                         </a>
                     </div>
                 </div>
