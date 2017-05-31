@@ -5,14 +5,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\GoogleAccount;
+use App\FacebookAccount;
 
-class GoogleController extends OAuthController
+class FacebookController extends OAuthController
 {
     /**
-     * @var string|GoogleAccount
+     * @var string|FacebookAccount
      */
-    protected $model = GoogleAccount::class;
+    protected $model = FacebookAccount::class;
 
     public function __construct()
     {

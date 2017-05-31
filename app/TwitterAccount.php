@@ -8,13 +8,13 @@ namespace App;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\User as GenericUser;
 
-class GoogleAccount extends SocialAccount
+class TwitterAccount extends SocialAccount
 {
-    public static $name = 'Google';
-    public static $icon = 'fa-google';
+    public static $name = 'Twitter';
+    public static $icon = 'fa-twitter';
 
     public static function driverName()
     {
-        return 'google';
+        return 'twitter';
     }
 }

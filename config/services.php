@@ -44,4 +44,16 @@ return [
         'redirect' => rtrim(env('APP_URL'), '/').'/auth/google/callback',
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => rtrim(env('APP_URL'), '/').'/auth/facebook/callback',
+    ],
+
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT'),
+        'client_secret' => env('TWITTER_SECRET'),
+        'redirect' => rtrim(env('APP_URL'), '/').'/auth/twitter/callback',
+    ],
+
 ];

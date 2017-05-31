@@ -24,6 +24,24 @@ class ConnectedAccount extends Model
      */
     public function getInstance()
     {
-        return new $this->account_type($this->user, $this);
+        return new $this->account_type($this);
+    }
+
+    public function getName()
+    {
+        return $this->getAccountType()::$name;
+    }
+
+    public function getIcon()
+    {
+        return $this->getAccountType()::$icon;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function getAccountType()
+    {
+        return $this->account_type;
     }
 }

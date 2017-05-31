@@ -39,7 +39,7 @@
     "Way to go :user!": "Way to go :user!",
     "We have been notified of the issue and we are already taking a look at it.": "We have been notified of the issue and we are already taking a look at it.",
     "Welcome :user": "Welcome :user",
-    "Welcome to your new account, :user! You may use Google to login again in the future.": "Welcome to your new account, :user! You may use Google to login again in the future.",
+    "Welcome to your account, :user! You may use :provider to login again in the future.": "Welcome to your account, :user! You may use :provider to login again in the future.",
     "You may proceed with your request and ignore this message.": "You may proceed with your request and ignore this message.",
     "Your account has been activated. Please login now.": "Your account has been activated. Please login now.",
     "Your account has been unlocked! Feel free to try out product out!": "Your account has been unlocked! Feel free to try out product out!",

@@ -5,14 +5,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\GoogleAccount;
+use App\TwitterAccount;
 
-class GoogleController extends OAuthController
+class TwitterController extends OAuthController
 {
     /**
-     * @var string|GoogleAccount
+     * @var string|TwitterAccount
      */
-    protected $model = GoogleAccount::class;
+    protected $model = TwitterAccount::class;
 
     public function __construct()
     {

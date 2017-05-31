@@ -8,20 +8,7 @@
 
         <div class="row">
             <div class="col-xs-12 col-md-4 push-md-8">
-                <div class="card mb-4">
-                    <div class="card-header">{{ __('Proceed with social authentification') }}</div>
-                    <div class="card-block">
-                        <a href="#" class="btn btn-facebook btn-block">
-                            <i class="fa fa-facebook-f" aria-hidden="true"></i> {{ __('Sign in with Facebook') }}
-                        </a>
-                        <a href="{{ route('google.redirect') }}" class="btn btn-google btn-block">
-                            <i class="fa fa-google" aria-hidden="true"></i> {{ __('Sign in with Google') }}
-                        </a>
-                        <a href="#" class="btn btn-twitter btn-block">
-                            <i class="fa fa-twitter" aria-hidden="true"></i> {{ __('Sign in with Twitter') }}
-                        </a>
-                    </div>
-                </div>
+                @include('cards.social-login')
                 <div class="card">
                     <div class="card-header">{{ __('I already have an account!') }}</div>
                     <div class="card-block">

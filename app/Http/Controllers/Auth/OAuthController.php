@@ -7,27 +7,94 @@ namespace App\Http\Controllers\Auth;
 
 
 use App\Http\Controllers\Controller;
+use App\Mail\OAuthAccountCreatedEmail;
 use App\User;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
-use Laravel\Socialite\Two\AbstractProvider;
-use Laravel\Socialite\Two\User as GenericUser;
 
 abstract class OAuthController extends Controller
 {
-    abstract public function redirect();
-
-    abstract public function callback();
-
-    abstract public function retrieveUser(GenericUser $user);
-
-    abstract public function createUser(GenericUser $user);
-
-    abstract public function refreshUser(User $user, GenericUser $genericUser);
-
-    protected function socialiteInstance(): AbstractProvider
+    public function redirect()
     {
-        return Socialite::driver($this->getDriver())->stateless();
+        return $this->socialiteInstance()->redirect();
     }
 
-    abstract protected function getDriver(): string;
+    public function callback()
+    {
+        $genericUser = $this->socialiteInstance()->user();
+
+        if ($user = $this->retrieveUser($genericUser)) {
+            $this->refreshUser($user, $genericUser);
+        } else {
+            $user = $this->createUser($genericUser);
+
+            flash(__('Welcome to your account, :user! You may use :provider to login again in the future.', [
+                'user' => $user->name,
+                'provider' => title_case($this->getDriver()),
+            ]))->success();
+        }
+
+        auth()->login($user, true);
+
+        return redirect()->intended(route('dashboard.index'));
+    }
+
+    public function retrieveUser($user)
+    {
+        return User::whereHas('connectedAccounts', function (Builder $query) use ($user) {
+            $query->where('connected_accounts.account_id', $user->getId());
+            $query->where('connected_accounts.account_type', $this->model);
+        })->first();
+    }
+
+    public function refreshUser(User $user, $genericUser)
+    {
+        $account = $user
+            ->connectedAccounts()
+            ->where('account_type', $this->model)
+            ->where('connected_accounts.account_id', $genericUser->getId())
+            ->first();
+
+        $account->data = $this->model::dataForConnectedAccount($genericUser);
+
+        $account->save();
+    }
+
+    public function createUser($genericUser): User
+    {
+        /** @var User $user */
+        $user = User::firstOrCreate([
+            'email' => $genericUser->getEmail(),
+        ], [
+            'name' => $genericUser->getName(),
+            'password' => bcrypt(str_random(32)),
+            'activated_at' => Carbon::now(),
+        ]);
+
+        $user->connectedAccounts()->create([
+            'account_type' => $this->model,
+            'account_id' => $genericUser->getId(),
+            'data' => $this->model::dataForConnectedAccount($genericUser),
+        ]);
+
+        Mail::to($user)->send(new OAuthAccountCreatedEmail($user));
+
+        return $user;
+    }
+
+    protected function getDriver(): string
+    {
+        return $this->model::driverName();
+    }
+
+    protected function socialiteInstance()
+    {
+        return tap(Socialite::driver($this->getDriver()), function ($instance) {
+            if (method_exists($instance, 'stateless')) {
+                $instance->stateless();
+            }
+        });
+    }
 }

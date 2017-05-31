@@ -5,16 +5,13 @@
 
 namespace App;
 
-use Laravel\Socialite\Facades\Socialite;
-use Laravel\Socialite\Two\User as GenericUser;
-
-class GoogleAccount extends SocialAccount
+class FacebookAccount extends SocialAccount
 {
-    public static $name = 'Google';
-    public static $icon = 'fa-google';
+    public static $name = 'Facebook';
+    public static $icon = 'fa-facebook-f';
 
     public static function driverName()
     {
-        return 'google';
+        return 'facebook';
     }
 }

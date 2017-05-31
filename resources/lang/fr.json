@@ -39,7 +39,7 @@
     "Way to go :user!": "Bravo :user!",
     "We have been notified of the issue and we are already taking a look at it.": "Nous avons été avisés et nous sommes déjà en train d'y jeter un œil.",
     "Welcome :user": "Bienvenue :user",
-    "Welcome to your new account, :user! You may use Google to login again in the future.": "Bienvenue sur votre nouveau compte :user! Vous pouvez utiliser Google pour vous connecter à l'avenir.",
+    "Welcome to your account, :user! You may use :provider to login again in the future.": "Bienvenue sur votre compte :user! Vous pourrez utiliser :provider pour vous connecter à l'avenir.",
     "You may proceed with your request and ignore this message.": "Vous pouvez continuer et ignorer ce message.",
     "Your account has been activated. Please login now.": "Votre compte a été activé. Veuillez vous connecter maintenant.",
     "Your account has been unlocked! Feel free to try out product out!": "Votre compte a été débloqué! Vous pouvez maintenant naviguer!",
