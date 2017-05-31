@@ -45,11 +45,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function products()
     {
-        return $this->hasMany(Product::class);
-    }
-
     public function oauth()
     {
         if (!$this->oauth_id) {
