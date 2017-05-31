@@ -21,8 +21,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        dd(auth()->user()->connectedAccounts->first()->getInstance()->refreshAccount());
-
         return view('dashboard.index');
     }
 }
