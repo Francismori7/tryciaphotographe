@@ -4,6 +4,4 @@ php:
 before_script:
   - composer self-update
   - composer install
-  - npm install
-  - npm run dev
 script: vendor/bin/phpunit
