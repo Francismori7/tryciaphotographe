@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -34,11 +34,13 @@
 
     <!-- Scripts -->
     <script>
-        window.ProductManager = {!! json_encode([
+        window.EventManager = {!! json_encode([
             'csrfToken' => csrf_token(),
+            'user' => auth()->user() ?? null,
+            'unreadNotifications' => auth()->check() ? auth()->user()->unreadNotifications->count() : 0,
             'broadcaster' => [
-                        'provider' => $provider = config('broadcasting.default'),
-                        'key' => config("broadcasting.connections.{$provider}.key")
+                'provider' => $provider = config('broadcasting.default'),
+                'key' => config("broadcasting.connections.{$provider}.key")
             ]
         ]) !!};
     </script>
@@ -69,6 +71,15 @@
                                 <a href="{{ url('/register') }}" class="nav-link">{{ __('Register') }}</a>
                             </li>
                         @else
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.notifications.index') }}" class="nav-link">
+                                    <span v-if="!!unreadNotifications">
+                                        <i class="fa fa-bell text-danger"></i>
+                                        <span class="badge badge-pill badge-danger" v-text="unreadNotifications"></span>
+                                    </span>
+                                    <i class="fa fa-bell-o" v-else></i>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{ route('dashboard.index') }}" class="nav-link">{{ auth()->user()->name }}</a>
                             </li>

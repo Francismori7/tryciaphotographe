@@ -13,9 +13,16 @@ Route::get('auth/twitter/callback', 'Auth\TwitterController@callback')->name('tw
 
 Route::get('/activate/{code}', 'Auth\RegisterController@activate')->name('activate');
 
-Route::get('test', function() {
-    return App\User::first()->oauth()->get();
+Route::get('test', function () {
+    for ($i = 1; $i <= 10; $i++) {
+        auth()->user()->notify(new \App\Notifications\NewShootingPublished());
+    }
 });
 
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+Route::get('/dashboard/notifications', 'DashboardNotificationsController@index')->name('dashboard.notifications.index');
+Route::get('/dashboard/notifications/read',
+    'DashboardNotificationsController@destroyAll')->name('dashboard.notifications.destroyAll');
+Route::delete('/dashboard/notifications/{id}',
+    'DashboardNotificationsController@destroy')->name('dashboard.notifications.destroy');

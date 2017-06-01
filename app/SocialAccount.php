@@ -33,7 +33,7 @@ abstract class SocialAccount
         return [
             'genericUser' => $genericUser->getRaw(),
             'nickname' => $genericUser->getNickname(),
-            'avatar' => $genericUser->avatar_original ?? $genericUser->getAvatar(),
+            'avatar' => str_replace_first('http:', 'https:', $genericUser->avatar_original ?? $genericUser->getAvatar()),
 
             'access_token' => $genericUser->token,
             'refresh_token' => $genericUser->refreshToken ?? null,

@@ -11,17 +11,20 @@ use Illuminate\Notifications\Notifiable;
 
 /**
  * App\User
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[]
- *     $notifications
- * @mixin \Eloquent
+ *
  * @property int $id
  * @property string $name
  * @property string $email
  * @property string $password
- * @property string $activation_code
  * @property string $remember_token
+ * @property string $activation_code
+ * @property \Carbon\Carbon $activated_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ConnectedAccount[] $connectedAccounts
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereActivatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereActivationCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
@@ -30,8 +33,7 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereRememberToken($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
- * @property \Carbon\Carbon $activated_at
- * @method static \Illuminate\Database\Query\Builder|\App\User whereActivatedAt($value)
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {

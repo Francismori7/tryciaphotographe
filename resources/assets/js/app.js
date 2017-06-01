@@ -12,6 +12,7 @@ require('./bootstrap');
 
 import Vue from "vue";
 import Logout from "./components/Logout.vue";
+import Notifications from "./components/Notifications.vue";
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -20,11 +21,27 @@ import Logout from "./components/Logout.vue";
  */
 
 Vue.component('logout', Logout);
+Vue.component('notifications', Notifications);
 
 const app = new Vue({
     el: '#app',
 
+    data: {
+        unreadNotifications: 0,
+    },
+
     created() {
         $('#flash-overlay-modal').modal();
+
+        this.unreadNotifications = window.EventManager.unreadNotifications;
+
+        var userId = window.EventManager.user.id || false;
+
+        if (userId) {
+            Echo.private(`App.User.${userId}`)
+                .notification((notification) => {
+                    this.unreadNotifications++;
+                });
+        }
     }
 });

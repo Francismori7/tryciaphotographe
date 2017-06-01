@@ -64,10 +64,11 @@
                             <div class="row form-group">
                                 <div class="col-xs-12 col-md-9 offset-md-3">
                                     <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" name="remember"
+                                        <label class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" name="remember"
                                                    id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            {{ __('Remember Me') }}
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">{{ __('Remember Me') }}</span>
                                         </label>
                                     </div>
                                 </div>
