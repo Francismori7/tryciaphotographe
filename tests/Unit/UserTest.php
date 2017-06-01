@@ -8,6 +8,7 @@ namespace Tests\Unit;
 use App\Product;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -50,14 +51,11 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function a_user_has_many_products()
+    public function a_user_can_have_notifications()
     {
         $user = create(User::class);
-        create(Product::class, ['user_id' => $user->id], 2);
 
-        $this->assertCount(2, $user->products);
-        $this->assertInstanceOf(Product::class, $user->products()->first());
+        $this->assertInstanceOf(DatabaseNotificationCollection::class, $user->notifications);
     }
-
 
 }

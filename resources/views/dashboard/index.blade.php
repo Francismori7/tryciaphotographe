@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
-@section('content')
-    <h1 class="page-header">Dashboard</h1>
+@section('title', __('Accueil'))
 
+@section('dashboard-page')
     <div class="card-deck">
         @foreach($user->connectedAccounts as $account)
             <div class="card">
