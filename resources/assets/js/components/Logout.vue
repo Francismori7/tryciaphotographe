@@ -4,7 +4,7 @@
 
 <template>
     <a href="/logout" @click.prevent="logout">
-        Logout
+        Déconnexion
     </a>
 </template>
 
