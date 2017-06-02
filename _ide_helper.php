@@ -1,4 +1,8 @@
 <?php
+/******************************************************************************
+ * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
+ ******************************************************************************/
+
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
  * Generated for Laravel 5.4.23 on 2017-06-01.

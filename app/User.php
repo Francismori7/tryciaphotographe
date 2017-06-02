@@ -8,6 +8,7 @@ namespace App;
 use App\Traits\MustActivateAccount;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
 
 /**
  * App\User
@@ -37,7 +38,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable
 {
-    use Notifiable, MustActivateAccount;
+    use Notifiable, Billable, MustActivateAccount;
 
     protected $dates = ['activated_at'];
     protected $guarded = [];
@@ -52,5 +53,9 @@ class User extends Authenticatable
     public function connectedAccounts()
     {
         return $this->hasMany(ConnectedAccount::class);
+    }
+
+    public function taxPercentage() {
+        return 14.97;
     }
 }

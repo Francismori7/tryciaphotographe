@@ -1,3 +1,7 @@
+/******************************************************************************
+ * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
+ ******************************************************************************/
+
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

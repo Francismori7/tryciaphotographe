@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', __('Accueil'))
+@section('title', __('Home'))
 
 @section('dashboard-page')
     <div class="card-deck">

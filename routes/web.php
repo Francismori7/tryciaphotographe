@@ -3,6 +3,8 @@
  * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
  ******************************************************************************/
 
+Route::post('stripe/webhooks', 'Webhooks\StripeWebhooksController@handleWebhook')->name('stripe.webhooks');
+
 Auth::routes();
 Route::get('auth/google/redirect', 'Auth\GoogleController@redirect')->name('google.redirect');
 Route::get('auth/google/callback', 'Auth\GoogleController@callback')->name('google.callback');

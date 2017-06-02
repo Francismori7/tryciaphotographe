@@ -174,6 +174,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Themsaid\LangmanGUI\LangmanServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Laravel\Cashier\CashierServiceProvider::class,
 
         /*
          * Application Service Providers...

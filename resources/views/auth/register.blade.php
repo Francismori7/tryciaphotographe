@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-4 push-md-8">
                 @include('cards.social-login')
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-header">{{ __('I already have an account!') }}</div>
                     <div class="card-block">
                         <a href="{{ url('/login') }}" class="btn btn-success btn-block">

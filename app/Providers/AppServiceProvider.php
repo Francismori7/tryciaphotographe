@@ -7,6 +7,8 @@ namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Cashier\Cashier;
+use Stripe\Stripe;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::defaultView('pagination::bootstrap-4');
         Paginator::defaultSimpleView('pagination::simple-bootstrap-4');
+
+        Cashier::useCurrency('cad');
+        Stripe::setApiKey(config('services.stripe.secret'));
     }
 
     /**
