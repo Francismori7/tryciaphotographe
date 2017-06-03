@@ -43,5 +43,19 @@ const app = new Vue({
                     this.unreadNotifications++;
                 });
         }
+        this.mapBillingElements();
+    },
+
+    methods: {
+        mapBillingElements() {
+            var elements = stripe.elements();
+            var card = elements.create('card');
+
+            card.mount('#card-element');
+        },
+
+        handleBillingForm(event) {
+            console.dir(event);
+        }
     }
 });

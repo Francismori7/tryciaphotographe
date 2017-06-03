@@ -1,7 +1,3 @@
-/******************************************************************************
- * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
- ******************************************************************************/
-
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -10581,6 +10577,20 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
                 _this.unreadNotifications++;
             });
         }
+        this.mapBillingElements();
+    },
+
+
+    methods: {
+        mapBillingElements: function mapBillingElements() {
+            var elements = stripe.elements();
+            var card = elements.create('card');
+
+            card.mount('#card-element');
+        },
+        handleBillingForm: function handleBillingForm(event) {
+            console.dir(event);
+        }
     }
 });
 
@@ -11500,6 +11510,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 window._ = __webpack_require__(36);
 
 window.eventHub = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
+
+window.stripe = Stripe(window.EventManager.stripe.key);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

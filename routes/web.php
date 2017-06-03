@@ -22,9 +22,14 @@ Route::get('test', function () {
 });
 
 Route::get('/', 'HomeController@index')->name('home.index');
+
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
 Route::get('/dashboard/notifications', 'DashboardNotificationsController@index')->name('dashboard.notifications.index');
 Route::get('/dashboard/notifications/read',
     'DashboardNotificationsController@destroyAll')->name('dashboard.notifications.destroyAll');
 Route::delete('/dashboard/notifications/{id}',
     'DashboardNotificationsController@destroy')->name('dashboard.notifications.destroy');
+
+Route::get('/dashboard/billing', 'DashboardBillingController@index')->name('dashboard.billing.index');
+Route::patch('/dashboard/billing', 'DashboardBillingController@update')->name('dashboard.billing.update');

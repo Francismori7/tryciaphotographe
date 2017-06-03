@@ -16,6 +16,8 @@ class DashboardNotificationsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        view()->share('currentDashboardPage', 'notifications');
     }
 
     public function index()

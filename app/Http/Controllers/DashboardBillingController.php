@@ -5,26 +5,28 @@
 
 namespace App\Http\Controllers;
 
-class DashboardController extends Controller
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+
+class DashboardBillingController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * DashboardNotificationsController constructor.
      */
     public function __construct()
     {
         $this->middleware('auth');
 
-        view()->share('currentDashboardPage', 'home');
+        view()->share('currentDashboardPage', 'billing');
     }
 
-    /**
-     * Show the application dashboard.
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $user = auth()->user()->load('connectedAccounts');
+        return view('dashboard.billing.index');
+    }
 
-        return view('dashboard.index', compact('user'));
+    public function update(Request $request) {
+        dd($request);
     }
 }

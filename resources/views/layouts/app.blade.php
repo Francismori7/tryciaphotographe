@@ -33,11 +33,15 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
+    <script src="https://js.stripe.com/v3/"></script>
     <script>
         window.EventManager = {!! json_encode([
             'csrfToken' => csrf_token(),
             'user' => auth()->user() ?? null,
             'unreadNotifications' => auth()->check() ? auth()->user()->unreadNotifications->count() : 0,
+            'stripe' => [
+                'key' => config('services.stripe.key'),
+            ],
             'broadcaster' => [
                 'provider' => $provider = config('broadcasting.default'),
                 'key' => config("broadcasting.connections.{$provider}.key")
