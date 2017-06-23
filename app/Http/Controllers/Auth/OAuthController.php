@@ -79,6 +79,8 @@ abstract class OAuthController extends Controller
             'data' => $this->model::dataForConnectedAccount($genericUser),
         ]);
 
+        $user->assignRole('user');
+
         Mail::to($user)->send(new OAuthAccountCreatedEmail($user));
 
         return $user;

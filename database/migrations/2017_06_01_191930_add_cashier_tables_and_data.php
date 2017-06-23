@@ -39,6 +39,6 @@ class AddCashierTablesAndData extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('subscriptions');
     }
 }

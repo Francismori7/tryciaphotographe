@@ -96,6 +96,8 @@ class RegisterController extends Controller
 
         $user->sendActivationEmail();
 
+        $user->
+
         return $user;
     }
 }

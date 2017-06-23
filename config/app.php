@@ -175,6 +175,7 @@ return [
         Themsaid\LangmanGUI\LangmanServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...

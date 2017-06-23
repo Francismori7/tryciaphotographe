@@ -11,8 +11,8 @@
     "php": ">=5.6.4",
     "dompdf/dompdf": "^0.8.0",
     "laracasts/flash": "^3.0",
-    "laravel/framework": "5.4.*",
     "laravel/cashier": "^7.0",
+    "laravel/framework": "5.4.*",
     "laravel/socialite": "^3.0",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "^5.4",
@@ -20,6 +20,7 @@
     "pusher/pusher-php-server": "^2.6",
     "spatie/laravel-backup": "^4.16",
     "spatie/laravel-fractal": "^4.0",
+    "spatie/laravel-permission": "^2.1",
     "themsaid/laravel-langman-gui": "^0.2.0"
   },
   "require-dev": {
