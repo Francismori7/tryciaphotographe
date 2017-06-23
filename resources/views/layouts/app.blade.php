@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -37,8 +37,8 @@
     <script>
         window.EventManager = {!! json_encode([
             'csrfToken' => csrf_token(),
-            'user' => auth()->user() ?? null,
-            'unreadNotifications' => auth()->check() ? auth()->user()->unreadNotifications->count() : 0,
+            'user' => $user ?? null,
+            'unreadNotifications' => $user ? $user->unreadNotifications_count : 0,
             'stripe' => [
                 'key' => config('services.stripe.key'),
             ],
@@ -51,53 +51,53 @@
 </head>
 <body>
     <div id="app" v-cloak>
-        <nav class="navbar navbar-toggleable-md navbar-fixed-top bg-success navbar-inverse">
-            <div class="container">
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                        data-target="#navigation" aria-controls="navigation"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name') }}</a>
+        <nav class="navbar navbar-toggleable-md fixed-top bg-faded navbar-light">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navigation" aria-controls="navigation"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name') }}</a>
 
-                <div class="collapse navbar-collapse" id="navigation">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('home.index') }}">{{ __("Home") }}</a>
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ route('home.index') }}">{{ __("Home") }}</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-0">
+                    @if(auth()->guest())
+                        <li class="nav-item">
+                            <a href="{{ url('/login') }}" class="nav-link">{{ __('Login') }}</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav mr-0">
-                        @if(auth()->guest())
-                            <li class="nav-item">
-                                <a href="{{ url('/login') }}" class="nav-link">{{ __('Login') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('/register') }}" class="nav-link">{{ __('Register') }}</a>
-                            </li>
-                        @else
-                            <li class="nav-item">
-                                <a href="{{ route('dashboard.notifications.index') }}" class="nav-link">
+                        <li class="nav-item">
+                            <a href="{{ url('/register') }}" class="nav-link">{{ __('Register') }}</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.notifications.index') }}" class="nav-link">
                                     <span v-if="!!unreadNotifications">
                                         <i class="fa fa-bell text-danger"></i>
                                         <span class="badge badge-pill badge-danger" v-text="unreadNotifications"></span>
                                     </span>
-                                    <i class="fa fa-bell-o" v-else></i>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('dashboard.index') }}" class="nav-link">{{ auth()->user()->name }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <logout class="nav-link"></logout>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
+                                <i class="fa fa-bell-o" v-else></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.index') }}" class="nav-link">{{ auth()->user()->name }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <logout class="nav-link"></logout>
+                        </li>
+                    @endif
+                </ul>
             </div>
         </nav>
 
-        <div class="container">
-            @include('flash::message')
+        <div class="content">
+            <div class="container-fluid">
+                @include('flash::message')
+            </div>
 
             @yield('content')
         </div>
@@ -105,5 +105,90 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}"></script>
+
+    @if(isset($currentDashboardPage) && $currentDashboardPage === 'billing')
+        <script>
+            let stripe = Stripe(EventManager.stripe.key);
+            let elements = stripe.elements();
+
+            let postalCode = '';
+
+            // Custom styling can be passed to options when creating an Element.
+            let options = {
+                style: {
+                    base: {
+                        // Add your base input styles here. For example:
+                        fontSize: '1.063rem',
+                        lineHeight: '1.5'
+                    }
+                }
+            };
+
+            // Create an instance of the card Element
+            let card = elements.create('card', options);
+
+            // Add an instance of the card Element into the `card-element` <div>
+            card.mount('#card-element');
+
+            card.addEventListener('change', function (event) {
+                let displayError = document.getElementById('card-errors');
+                if (event.error) {
+                    displayError.textContent = event.error.message;
+                } else {
+                    displayError.textContent = '';
+                }
+            });
+
+            // Create a token or display an error when the form is submitted.
+            let form = document.getElementById('billing-form');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                let options = {
+                    name: document.querySelector('input[name="name"]').value,
+                    address_line1: document.querySelector('input[name="address_line1"]').value,
+                    address_line2: document.querySelector('input[name="address_line2"]').value,
+                    address_city: document.querySelector('input[name="address_city"]').value,
+                    address_state: document.querySelector('input[name="address_state"]').value,
+                    address_zip: postalCode,
+                    address_country: 'Canada',
+                };
+
+                stripe.createToken(card, options).then(function (result) {
+                    if (result.error) {
+                        // Inform the user if there was an error
+                        let errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Send the token to your server
+                        stripeTokenHandler(result.token);
+                    }
+                });
+            });
+
+            function stripeTokenHandler(token) {
+                // Insert the token ID into the form so it gets submitted to the server
+                let form = document.getElementById('billing-form');
+                let hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', token.id);
+                form.appendChild(hiddenInput);
+
+                let postalCodeInput = document.createElement('input');
+                postalCodeInput.setAttribute('type', 'hidden');
+                postalCodeInput.setAttribute('name', 'address_zip');
+                postalCodeInput.setAttribute('value', postalCode);
+                form.appendChild(postalCodeInput);
+
+                // Submit the form
+                form.submit();
+            }
+
+            card.on('change', function(event) {
+                postalCode = event.value.postalCode;
+            });
+        </script>
+    @endif
 </body>
 </html>

@@ -5,6 +5,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ConnectedAccount;
+use Cache;
+
 class DashboardController extends Controller
 {
     /**
@@ -23,8 +26,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $user = auth()->user()->load('connectedAccounts');
-
-        return view('dashboard.index', compact('user'));
+        return view('dashboard.index');
     }
 }

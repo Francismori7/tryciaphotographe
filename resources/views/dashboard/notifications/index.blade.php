@@ -8,7 +8,7 @@
         <div class="col-md">
             <div class="card">
                 <div class="card-block">
-                    <div class="row">
+                    <div class="row mb-4">
                         <div class="col-md">
                             {{ $user->notifications->links() }}
                         </div>

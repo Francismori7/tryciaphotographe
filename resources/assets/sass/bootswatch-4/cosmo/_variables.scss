@@ -115,11 +115,11 @@ $gray-lighter:              #eceeef !default;
 $gray-lightest:             #f7f7f9 !default;
 
 // Reassign color vars to semantic color scheme
-$brand-primary:             #2780E3;
-$brand-success:             #3FB618;
-$brand-info:                #9954BB;
-$brand-warning:             #FF7518;
-$brand-danger:              #FF0039;
+$brand-primary:             #2780E3 !default;
+$brand-success:             #3FB618 !default;
+$brand-info:                #9954BB !default;
+$brand-warning:             #FF7518 !default;
+$brand-danger:              #FF0039 !default;
 $brand-inverse:             $gray-dark !default;
 
 

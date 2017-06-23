@@ -800,7 +800,7 @@ module.exports = function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/*!
- * Vue.js v2.3.3
+ * Vue.js v2.3.4
  * (c) 2014-2017 Evan You
  * Released under the MIT License.
  */
@@ -5229,7 +5229,7 @@ Object.defineProperty(Vue$3.prototype, '$ssrContext', {
   }
 });
 
-Vue$3.version = '2.3.3';
+Vue$3.version = '2.3.4';
 
 /*  */
 
@@ -5720,6 +5720,7 @@ function createPatchFunction (backend) {
   function initComponent (vnode, insertedVnodeQueue) {
     if (isDef(vnode.data.pendingInsert)) {
       insertedVnodeQueue.push.apply(insertedVnodeQueue, vnode.data.pendingInsert);
+      vnode.data.pendingInsert = null;
     }
     vnode.elm = vnode.componentInstance.$el;
     if (isPatchable(vnode)) {
@@ -10570,26 +10571,12 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
         this.unreadNotifications = window.EventManager.unreadNotifications;
 
-        var userId = window.EventManager.user.id || false;
+        var userId = window.EventManager.user ? window.EventManager.user.id : false;
 
         if (userId) {
             Echo.private("App.User." + userId).notification(function (notification) {
                 _this.unreadNotifications++;
             });
-        }
-        this.mapBillingElements();
-    },
-
-
-    methods: {
-        mapBillingElements: function mapBillingElements() {
-            var elements = stripe.elements();
-            var card = elements.create('card');
-
-            card.mount('#card-element');
-        },
-        handleBillingForm: function handleBillingForm(event) {
-            console.dir(event);
         }
     }
 });
@@ -47561,7 +47548,7 @@ var Component = __webpack_require__(7)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\franc\\PhpstormProjects\\event-manager\\resources\\assets\\js\\components\\Logout.vue"
+Component.options.__file = "C:\\Users\\franc\\PhpstormProjects\\tryciaphotographe\\resources\\assets\\js\\components\\Logout.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Logout.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -47572,9 +47559,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ea22c0a8", Component.options)
+    hotAPI.createRecord("data-v-6269c8db", Component.options)
   } else {
-    hotAPI.reload("data-v-ea22c0a8", Component.options)
+    hotAPI.reload("data-v-6269c8db", Component.options)
   }
 })()}
 
@@ -47595,7 +47582,7 @@ var Component = __webpack_require__(7)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\franc\\PhpstormProjects\\event-manager\\resources\\assets\\js\\components\\Notifications.vue"
+Component.options.__file = "C:\\Users\\franc\\PhpstormProjects\\tryciaphotographe\\resources\\assets\\js\\components\\Notifications.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -47605,9 +47592,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9c10d094", Component.options)
+    hotAPI.createRecord("data-v-a6b8e8b2", Component.options)
   } else {
-    hotAPI.reload("data-v-9c10d094", Component.options)
+    hotAPI.reload("data-v-a6b8e8b2", Component.options)
   }
 })()}
 
@@ -47635,7 +47622,7 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-ea22c0a8", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-6269c8db", module.exports)
   }
 }
 

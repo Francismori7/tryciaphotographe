@@ -1,6 +1,8 @@
 /*!*****************************************************************************
  * Copyright (c) 2017. Mori7 Technologie inc. Tous droits réservés.           *
  ******************************************************************************/
+
+@import "variables";
 @import "bootswatch-4/cosmo/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "bootswatch-4/cosmo/bootswatch";
@@ -10,8 +12,48 @@
   display: none;
 }
 
+body {
+  background: #ffffff url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23eceeef' fill-opacity='1' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.content {
+  margin-top: 84px;
+}
+
+.nav-fill .nav-link {
+  border-radius: 0;
+}
+
 .navbar {
-  margin-bottom: 2em;
+  @extend .top-border-pink;
+}
+
+.top-border-pink {
+  border-top: 6px transparent solid;
+  border-image: linear-gradient(to right, $pink, darken($pink, 10%)) 1;
+}
+
+.alert.alert-fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  margin: 20px;
+  max-width: 300px;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.6);
+}
+
+.sidebar {
+  @extend .bg-faded;
+  position: fixed;
+  top: 54px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  border-right: 1px solid #eee;
 }
 
 .btn {
@@ -21,7 +63,43 @@
   &.btn-google {
     @include button-variant(white, #4285F4, lighten(#4285F4, 10%));
   }
+  &.btn-instagram {
+    @include button-variant($body-color, white, darken(white, 10%));
+  }
   &.btn-twitter {
     @include button-variant(white, #2bb8ee, lighten(#2bb8ee, 10%));
   }
+}
+
+.homepage-background {
+  background-image: url('/images/background-1.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  @extend .top-border-pink;
+
+  .jumbotron {
+    background-color: transparent;
+    margin-bottom: 0;
+
+    [class^="display-"] {
+      color: white !important;
+    }
+    .lead {
+      color: darken(white, 10%) !important;
+    }
+  }
+}
+
+.btn-xl {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, 2rem, $btn-border-radius-lg);
+}
+
+.carousel-inner > .carousel-item > img {
+  width: 100%;
+  height: 100%;
+}
+
+.bg-info-gradient {
+  @extend .bg-info;
+  background-image: linear-gradient(to right, $pink, darken($pink, 10%));
 }

@@ -27,7 +27,7 @@ const app = new Vue({
     el: '#app',
 
     data: {
-        unreadNotifications: 0,
+        unreadNotifications: 0
     },
 
     created() {
@@ -35,27 +35,13 @@ const app = new Vue({
 
         this.unreadNotifications = window.EventManager.unreadNotifications;
 
-        var userId = window.EventManager.user.id || false;
+        var userId = window.EventManager.user ? window.EventManager.user.id : false;
 
         if (userId) {
             Echo.private(`App.User.${userId}`)
                 .notification((notification) => {
                     this.unreadNotifications++;
                 });
-        }
-        this.mapBillingElements();
-    },
-
-    methods: {
-        mapBillingElements() {
-            var elements = stripe.elements();
-            var card = elements.create('card');
-
-            card.mount('#card-element');
-        },
-
-        handleBillingForm(event) {
-            console.dir(event);
         }
     }
 });

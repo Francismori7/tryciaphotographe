@@ -23,6 +23,8 @@ class CreateNotificationsTable extends Migration
             $table->text('data');
             $table->timestamp('read_at')->nullable();
             $table->timestamps();
+
+            $table->index(['notifiable_id', 'notifiable_type', 'read_at']);
         });
     }
 

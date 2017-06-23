@@ -16,9 +16,12 @@ Route::get('auth/twitter/callback', 'Auth\TwitterController@callback')->name('tw
 Route::get('/activate/{code}', 'Auth\RegisterController@activate')->name('activate');
 
 Route::get('test', function () {
-    for ($i = 1; $i <= 10; $i++) {
+    /*for ($i = 1; $i <= 10; $i++) {
         auth()->user()->notify(new \App\Notifications\NewShootingPublished());
-    }
+    }*/
+    auth()->user()->notify(new \App\Notifications\NewShootingPublished());
+
+//    return view('test');
 });
 
 Route::get('/', 'HomeController@index')->name('home.index');

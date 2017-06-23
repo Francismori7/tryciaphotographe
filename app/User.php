@@ -23,8 +23,10 @@ use Laravel\Cashier\Billable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ConnectedAccount[] $connectedAccounts
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[]
+ *     $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[]
+ *     $unreadNotifications
  * @method static \Illuminate\Database\Query\Builder|\App\User whereActivatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereActivationCode($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
@@ -55,7 +57,13 @@ class User extends Authenticatable
         return $this->hasMany(ConnectedAccount::class);
     }
 
-    public function taxPercentage() {
+    public function taxPercentage()
+    {
         return 14.97;
+    }
+
+    public function getCardNumber()
+    {
+        return "&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; {$this->card_last_four}";
     }
 }

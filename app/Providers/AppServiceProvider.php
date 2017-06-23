@@ -5,10 +5,14 @@
 
 namespace App\Providers;
 
+use App\Http\ViewCreators\UserCreator;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Cashier\Cashier;
 use Stripe\Stripe;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
 
         Cashier::useCurrency('cad');
         Stripe::setApiKey(config('services.stripe.secret'));
+
+        Carbon::setLocale('fr');
+        setlocale(LC_ALL, 'fr-CA');
+
+        View::creator(['layouts.app', 'home.index'], UserCreator::class);
     }
 
     /**

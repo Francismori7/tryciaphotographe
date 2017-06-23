@@ -34,6 +34,9 @@ class ConnectedAccount extends Model
         'data' => 'object',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -41,24 +44,32 @@ class ConnectedAccount extends Model
 
     /**
      * Gets an instance of the account type.
+     *
+     * @return \App\SocialAccount
      */
     public function getInstance()
     {
         return new $this->account_type($this);
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return $this->getAccountType()::$name;
     }
 
+    /**
+     * @return string
+     */
     public function getIcon()
     {
         return $this->getAccountType()::$icon;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     protected function getAccountType()
     {

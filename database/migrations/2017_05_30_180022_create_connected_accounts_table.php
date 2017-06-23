@@ -18,7 +18,7 @@ class CreateConnectedAccountsTable extends Migration
     {
         Schema::create('connected_accounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->index();
             $table->string('account_id');
             $table->string('account_type');
             $table->json('data');
