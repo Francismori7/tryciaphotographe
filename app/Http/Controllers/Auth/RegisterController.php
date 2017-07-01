@@ -87,6 +87,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        /** @var User $user */
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -96,7 +97,7 @@ class RegisterController extends Controller
 
         $user->sendActivationEmail();
 
-        $user->
+        $user->assignRole('user');
 
         return $user;
     }

@@ -9,6 +9,7 @@ use App\Traits\MustActivateAccount;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
+use Laravel\Scout\Searchable;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
@@ -41,7 +42,7 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable
 {
-    use Notifiable, Billable, MustActivateAccount, HasRoles;
+    use Notifiable, Billable, MustActivateAccount, HasRoles, Searchable;
 
     protected $dates = ['activated_at'];
     protected $guarded = [];

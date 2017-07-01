@@ -176,6 +176,8 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
+        DamianTW\MySQLScout\Providers\MySQLScoutServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -21,28 +21,32 @@ class PermissionsSeed extends Seeder
          * @var Role $adminRole
          * @var Role $userRole
          */
-        $adminRole = Role::create(['name' => 'adminRole']);
+        $adminRole = Role::create(['name' => 'admin']);
         $userRole = Role::create(['name' => 'user']);
 
         $bothPermissions[] = Permission::create(['name' => 'access website']);
         $bothPermissions[] = Permission::create(['name' => 'see own notifications']);
+        $adminPermissions[] = Permission::create(['name' => 'view all users']);
         $adminPermissions[] = Permission::create(['name' => 'create users']);
         $adminPermissions[] = Permission::create(['name' => 'edit users']);
         $adminPermissions[] = Permission::create(['name' => 'impersonate users']);
         $bothPermissions[] = Permission::create(['name' => 'edit own billing info']);
         $bothPermissions[] = Permission::create(['name' => 'edit own settings']);
         $adminPermissions[] = Permission::create(['name' => 'delete users']);
+        $bothPermissions[] = Permission::create(['name' => 'view own appointments']);
+        $adminPermissions[] = Permission::create(['name' => 'view all appointments']);
         $bothPermissions[] = Permission::create(['name' => 'create appointments']);
         $adminPermissions[] = Permission::create(['name' => 'approve appointments']);
         $adminPermissions[] = Permission::create(['name' => 'decline appointments']);
         $adminPermissions[] = Permission::create(['name' => 'conclude appointments']);
         $adminPermissions[] = Permission::create(['name' => 'edit appointments']);
-        $bothPermissions[] = Permission::create(['name' => 'delete appointments']);
+        $adminPermissions[] = Permission::create(['name' => 'delete appointments']);
+        $bothPermissions[] = Permission::create(['name' => 'delete own appointments']);
         $adminPermissions[] = Permission::create(['name' => 'create shootings']);
         $adminPermissions[] = Permission::create(['name' => 'edit shootings']);
         $adminPermissions[] = Permission::create(['name' => 'delete shootings']);
-        $adminPermissions[] = Permission::create(['name' => 'see all shootings']);
-        $bothPermissions[] = Permission::create(['name' => 'see own shootings']);
+        $adminPermissions[] = Permission::create(['name' => 'view all shootings']);
+        $bothPermissions[] = Permission::create(['name' => 'view own shootings']);
 
         $adminRole->givePermissionTo(array_merge($adminPermissions, $bothPermissions));
         $userRole->givePermissionTo(array_merge($bothPermissions));

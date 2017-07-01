@@ -64,6 +64,11 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{ route('home.index') }}">{{ __("Home") }}</a>
                     </li>
+                    @can('view all users')
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{{ route('admin.users.index') }}">{{ __("Users") }}</a>
+                        </li>
+                    @endcan
                 </ul>
                 <ul class="navbar-nav mr-0">
                     @if(auth()->guest())
@@ -185,7 +190,7 @@
                 form.submit();
             }
 
-            card.on('change', function(event) {
+            card.on('change', function (event) {
                 postalCode = event.value.postalCode;
             });
         </script>
